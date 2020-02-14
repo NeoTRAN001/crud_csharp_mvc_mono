@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CRUD.Models.Person>
+
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Age</th>
+                <th scope="col">Email</th>
+                <th scope="col">Selected</th>
+             </tr>
+          </thead>
+          <tbody>
+            @foreach (var person in Model) 
+             {
+                <tr>
+                    <th>@person.Id</th>
+                    <td>@person.Age</td>
+                    <td>@person.Email</td>
+                    <td>
+                        @Html.ActionLink("To select", "Index","Home", new { id=@person.Id }, null)
+                    </td>
+                </tr>
+             }  
+          </tbody>
+    </table>
+</div>
+
+
+

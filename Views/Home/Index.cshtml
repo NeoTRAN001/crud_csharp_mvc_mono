@@ -1,0 +1,53 @@
+﻿@model CRUD.Models.Person 
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Home</a>
+</nav>
+
+@if(ViewData["Message"] != null) 
+{
+    <div class="alert alert-primary" role="alert">
+        @ViewData["Message"]
+    </div>
+}
+
+@if(ViewData["Error"] != null) 
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewData["Error"]
+    </div>
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="container">
+        <form>
+            <div class="form-group" style="width: 20%;">
+                <label for="exampleFormControlInput1">Id</label>
+                @Html.TextBoxFor(model => model.Id, new { @class = "form-control" })
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Age</label>
+                @Html.TextBoxFor(model => model.Age, new { @class = "form-control", @type = "number" })
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Message</label>
+                @Html.TextAreaFor(model => model.Message, new { @class = "form-control", @rows="3" })
+            </div>
+            
+            <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="input" name="action" value="add" class="btn btn-success">Add</button>
+                  <button type="input" name="action" value="delete" class="btn btn-danger">Delete</button>
+                  <button type="input" name="action" value="search" class="btn btn-primary">Search</button>
+                  @Html.ActionLink("Clear", "Index","Home", new { id = 0 } , new { @class = "btn btn-warning"  })
+            </div>
+        </form>
+    </div>
+}
